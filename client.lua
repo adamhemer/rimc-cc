@@ -14,15 +14,18 @@ end
 
 _corner = "+"
 _sides = "|"
+_top = "-"
 
 function drawBox(x, y, w, h)
     for j = y, h do
         for i = x, w do
             term.setCursorPos(i, j)
-            if i == x or i == w then
+            if (i == x or i == w) and (j == y or j == h) then
                 term.write(_corner)
-            else
+            elseif i == x or i == w then
                 term.write(_sides)
+            elseif j == y or j == h then
+                term.write(_top)
             end
         end
     end
