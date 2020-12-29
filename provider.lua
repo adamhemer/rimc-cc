@@ -17,7 +17,7 @@ local line = file.readLine()
 fileLength = 0
 while line do
     fileLength = fileLength + 1
-    line = file.nextLine()
+    line = file.readLine()
 end
 file.close()
 
