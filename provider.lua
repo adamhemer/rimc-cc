@@ -26,21 +26,19 @@ local linesSent = 0
 while true do
     sleep(0)
     id, message, protocol = rednet.receive()
+
+    term.clear()
+    local percentage = math.floor(linesSent / fileLength * 10000) / 100
+    print(linesSent .. "/" .. fileLength .. " : " .. percentage)
     
     if message == "requesting client" then
         uploading = id
         file = fs.open("client.lua", "r")
         rednet.send(uploading, "download start")
+        print("Download starting...")
     end
 
     if uploading > -1 then
-        
-        term.clear()
-        term.setCursorPos(0, 0)
-        print("Download starting...")
-        local percentage = math.floor(linesSent / fileLength * 10000) / 100
-        print(linesSent .. "/" .. fileLength .. " : " .. percentage)
-
         local line = file.readLine()
         if not line then
             rednet.send(uploading, "download end")

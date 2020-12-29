@@ -17,6 +17,7 @@ rednet.send(host, "requesting client", "client download")
 downloading = false
 local file
 while true do
+    sleep(0)
     event, id, text = os.pullEvent()
     if event == "rednet_message" then
         if text == "download end" then
