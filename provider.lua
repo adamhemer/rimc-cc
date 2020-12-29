@@ -43,7 +43,7 @@ while true do
         if not line then
             rednet.send(uploading, "download end")
             uploading = -1
-            print("Download finished.")
+            print("Download finished. Client installed on computer " .. id .. ".")
         else
             rednet.send(uploading, line)
             linesSent = linesSent + 1
